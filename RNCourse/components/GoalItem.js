@@ -1,7 +1,8 @@
 import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
-const GoalItem = ({ goal, onDeleteItem }) => {
+const GoalItem = (props) => {
+  const { goal, onDeleteItem } = props;
   return (
     <View style={styles.goalItem}>
       <Pressable

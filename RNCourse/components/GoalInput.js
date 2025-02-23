@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { View, TextInput, Button, StyleSheet, Modal, Image } from "react-native";
 import colors from "../styles/colors";
 
-const GoalInput = ({ onPress, isVisibleModal, setIsVisibleModal }) => {
+const GoalInput = (props) => {
+  const { addGoal, isVisibleModal, setIsVisibleModal } = props;
   const [enteredGoalText, setEnteredGoalText] = useState("");
 
   const goalInputHandler = (enteredText) => {
@@ -10,7 +11,7 @@ const GoalInput = ({ onPress, isVisibleModal, setIsVisibleModal }) => {
   };
 
   const addGoalHandler = () => {
-    onPress(enteredGoalText);
+    addGoal(enteredGoalText);
     setEnteredGoalText("");
     cancelModal();
   };

@@ -1,13 +1,5 @@
 import { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  TextInput,
-  FlatList,
-  Modal,
-} from "react-native";
+import { StyleSheet, View, Button, FlatList } from "react-native";
 import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
 import colors from "./styles/colors";
@@ -45,7 +37,7 @@ export default function App() {
           onPress={showModal}
         />
         <GoalInput
-          onPress={addGoalHandler}
+          addGoal={addGoalHandler}
           isVisibleModal={isVisibleModal}
           setIsVisibleModal={setIsVisibleModal}
         />
