@@ -18,8 +18,8 @@ export default function App() {
   const [userNumber, setUserNumber] = useState("");
   const [gameIsOver, setGameIsOver] = useState(true);
   const [guessRounds, setGuessRounds] = useState(0);
-  
-  const [fontsLoaded ] = useFonts({
+
+  const [fontsLoaded] = useFonts({
     "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
     "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
   });
@@ -28,13 +28,10 @@ export default function App() {
     return <AppLoading />;
   }
 
-  const pickNumberHandler = useCallback(
-    (selectedNumber) => {
-      setUserNumber(selectedNumber);
-      setGameIsOver(false);
-    },
-    [setGameIsOver, setUserNumber]
-  );
+  const pickNumberHandler = (selectedNumber) => {
+    setUserNumber(selectedNumber);
+    setGameIsOver(false);
+  };
 
   const gameOverHandler = (numberOfRounds) => {
     setGameIsOver(true);
@@ -44,7 +41,7 @@ export default function App() {
   const startNewGameHandler = () => {
     setUserNumber(null);
     setGuessRounds(0);
-  }
+  };
 
   const screen =
     gameIsOver && userNumber ? (
@@ -61,7 +58,10 @@ export default function App() {
         onGameOver={(guessRoundsLength) => gameOverHandler(guessRoundsLength)}
       />
     ) : (
-      <StartGameScreen key={"startGame"} onPickNumber={pickNumberHandler} />
+      <StartGameScreen
+        key={"startGame"}
+        onPickNumber={(number) => pickNumberHandler(number)}
+      />
     );
 
   return (
@@ -80,7 +80,9 @@ export default function App() {
           backgroundColor="transparent"
           barStyle="dark-content"
         />
-        <SafeAreaView style={[styles.rootScreen, { marginTop: 30 } ]}>{screen}</SafeAreaView>
+        <SafeAreaView style={[styles.rootScreen, { marginTop: 30 }]}>
+          {screen}
+        </SafeAreaView>
       </ImageBackground>
     </LinearGradient>
   );
