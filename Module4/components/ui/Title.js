@@ -1,7 +1,7 @@
 import React from "react";
-import { Text, StyleSheet } from "react-native";
+import { Text, StyleSheet, Platform } from "react-native";
 
-function Title({children, color}) {
+function Title({ children, color }) {
   return (
     <Text
       style={{
@@ -22,10 +22,16 @@ export default Title;
 const styles = StyleSheet.create({
   title: {
     fontFamily: "open-sans-bold",
-    fontSize: 18,
+    fontSize: 24,
+    color: "white",
     textAlign: "center",
-    borderWidth: 2,
+    borderWidth: Platform.select({
+      ios: 0.5,
+      android: 1,
+    }),
     padding: 12,
     marginTop: 12,
+    maxWidth: "80%",
+    with: 300,
   },
 });
