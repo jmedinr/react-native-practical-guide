@@ -1,17 +1,13 @@
 import React, { useState, useCallback } from "react";
 import StartGameScreen from "./screens/StartGameScreen";
-import {
-  StyleSheet,
-  ImageBackground,
-  SafeAreaView,
-  StatusBar,
-} from "react-native";
+import { StyleSheet, ImageBackground, SafeAreaView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import GameScreen from "./screens/GameScreen";
 import Colors from "./contants/colors";
 import GameOverScreen from "./screens/GameOverScreen";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
+import { StatusBar } from "expo-status-bar";
 
 export default function App() {
   const backgroundImage = require("./assets/images/background.png");
@@ -65,26 +61,24 @@ export default function App() {
     );
 
   return (
-    <LinearGradient
-      style={styles.rootScreen}
-      colors={[Colors.primary800, Colors.accent500]}
-    >
-      <ImageBackground
-        source={backgroundImage}
-        resizeMode="cover"
+    <>
+      <StatusBar style="light" />
+      <LinearGradient
         style={styles.rootScreen}
-        imageStyle={styles.backgroundImage}
+        colors={[Colors.primary800, Colors.accent500]}
       >
-        <StatusBar
-          translucent
-          backgroundColor="transparent"
-          barStyle="dark-content"
-        />
-        <SafeAreaView style={[styles.rootScreen, { marginTop: 30 }]}>
-          {screen}
-        </SafeAreaView>
-      </ImageBackground>
-    </LinearGradient>
+        <ImageBackground
+          source={backgroundImage}
+          resizeMode="cover"
+          style={styles.rootScreen}
+          imageStyle={styles.backgroundImage}
+        >
+          <SafeAreaView style={[styles.rootScreen, { marginTop: 30 }]}>
+            {screen}
+          </SafeAreaView>
+        </ImageBackground>
+      </LinearGradient>
+    </>
   );
 }
 
@@ -93,6 +87,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   backgroundImage: {
-    opacity: 0.4,
+    opacity: 0.15,
   },
 });
